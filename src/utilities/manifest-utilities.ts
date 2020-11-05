@@ -202,20 +202,22 @@ function substituteImageNameInSpecContent(currentString: string, imageName: stri
 }
 
 function updateContainerImagesInManifestFiles(filePaths: string[], containers: string[]): string[] {
-  core.debug(filePaths.toString())
-  core.debug(containers.toString())
+  core.debug(`filePaths: ${filePaths.toString()}`)
+  core.debug(`containers: ${containers.toString()}`)
     if (!!containers && containers.length > 0) {
         const newFilePaths = [];
         const tempDirectory = fileHelper.getTempDirectory();
+        core.debug(`tempDirectory: ${tempDirectory}`);
         filePaths.forEach((filePath: string) => {
             let contents = fs.readFileSync(filePath).toString();
+            core.debug(`contents read`);
             containers.forEach((container: string) => {
                 let imageName = container.split(':')[0];
                 if (imageName.indexOf('@') > 0) {
                     imageName = imageName.split('@')[0];
                 }
                 core.debug(`contents:\n${contents}`);
-                core.debug(`imageName:\n${imageName}`);
+                core.debug(`imageName: ${imageName}`);
                 if (contents.indexOf(imageName) > 0) {
                     contents = substituteImageNameInSpecFile(contents, imageName, container);
                 }
