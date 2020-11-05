@@ -285,7 +285,7 @@ export function getUpdatedManifestFiles (manifestFilePaths: string[]) {
     if (!inputManifestFiles || inputManifestFiles.length === 0) {
         throw new Error(`ManifestFileNotFound : ${manifestFilePaths}`);
     }
-
+core.debug('Here we go...')
     // artifact substitution
     inputManifestFiles = updateContainerImagesInManifestFiles(inputManifestFiles, TaskInputParameters.containers);
 
