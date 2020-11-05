@@ -214,6 +214,8 @@ function updateContainerImagesInManifestFiles(filePaths: string[], containers: s
                 if (imageName.indexOf('@') > 0) {
                     imageName = imageName.split('@')[0];
                 }
+                core.debug(`contents:\n${contents}`);
+                core.debug(`imageName:\n${imageName}`);
                 if (contents.indexOf(imageName) > 0) {
                     contents = substituteImageNameInSpecFile(contents, imageName, container);
                 }
