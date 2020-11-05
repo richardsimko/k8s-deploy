@@ -70,6 +70,9 @@ export function getDeleteCmdArgs(argsPrefix: string, inputArgs: string): string 
 */
 
 export function substituteImageNameInSpecFile(currentString: string, imageName: string, imageNameWithNewTag: string) {
+  core.debug(`currentString: ${currentString}`);
+  core.debug(`imageName: ${imageName}`);
+  core.debug(`imageNameWithNewTag: ${imageNameWithNewTag}`);
     if (currentString.indexOf(imageName) < 0) {
         core.debug(`No occurence of replacement token: ${imageName} found`);
         return currentString;
@@ -199,6 +202,8 @@ function substituteImageNameInSpecContent(currentString: string, imageName: stri
 }
 
 function updateContainerImagesInManifestFiles(filePaths: string[], containers: string[]): string[] {
+  core.debug(filePaths.toString())
+  core.debug(containers.toString())
     if (!!containers && containers.length > 0) {
         const newFilePaths = [];
         const tempDirectory = fileHelper.getTempDirectory();
