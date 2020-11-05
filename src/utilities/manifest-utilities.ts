@@ -272,7 +272,7 @@ function updateImagePullSecretsInManifestFiles(filePaths: string[], imagePullSec
                 }
             });
         });
-        core.debug('New K8s objects after adding imagePullSecrets are :' + JSON.stringify(newObjectsList));
+        core.debug('FLESK New K8s objects after adding imagePullSecrets are :' + JSON.stringify(newObjectsList));
         const newFilePaths = fileHelper.writeObjectsToFile(newObjectsList);
         return newFilePaths;
     }
